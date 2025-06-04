@@ -1,0 +1,163 @@
+@import url("https://fonts.cdnfonts.com/css/ica-rubrik-black");
+@import url("https://fonts.cdnfonts.com/css/poppins");
+
+body {
+  background: linear-gradient(30deg, #d2d2d2, #25283b);
+  animation: gradientBG 15s ease infinite;
+  background-size: 400% 400%;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.banner {
+  width: 100%;
+  height: 100dvh;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner .slider {
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  top: 10%;
+  left: calc(50% - 100px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: auto-rotate 20s linear infinite;
+  z-index: 2;
+}
+
+@keyframes auto-rotate {
+  from {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+  }
+}
+
+.banner .slider .item {
+  position: absolute;
+  inset: 0 0 0 0;
+  transform: rotateY(
+      calc((var(--position) - 1) * (360 / var(--quantity) * 1deg))
+    )
+    translateZ(calc(50dvw - 200px));
+  transition: all 0.3s linear;
+}
+
+.banner .slider:hover {
+  animation-play-state: paused;
+}
+
+.banner .slider .item:hover {
+  transform: rotateY(
+      calc((var(--position) - 1) * (360 / var(--quantity) * 1deg))
+    )
+    rotateX(10deg) translateZ(calc(50dvw - 200px)) scale(1.2);
+  transform-origin: center;
+  z-index: 1;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.banner .slider .item:hover img {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.banner .slider .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 9 / 16;
+}
+
+.banner .content {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+.banner .content h1 {
+  font-family: "Ica Rubrik", sans-serif;
+  font-size: 15em;
+  line-height: 1em;
+  color: #25283b;
+  position: relative;
+}
+
+.banner .content h1::after {
+  position: absolute;
+  inset: 0 0 0 0;
+  content: attr(data-content);
+  z-index: 2;
+  -webkit-text-stroke: 2px #d2d2d2;
+  color: transparent;
+}
+
+.banner .content .author {
+  font-family: "Poppins", sans-serif;
+  text-align: right;
+  max-width: 200px;
+}
+
+.banner .content .author h2 {
+  font-size: 3em;
+}
+
+.banner .content .model {
+  background-image: url(images/girl_praying.png);
+  width: 100%;
+  height: 85dvh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-size: auto 130%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: 1;
+  filter: brightness(1.1) contrast(1.1);
+  animation: floating 10s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.banner .slider .item.preview {
+  transform: translateZ(650px) scale(1.3) !important;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1) contrast(1.1);
+}
