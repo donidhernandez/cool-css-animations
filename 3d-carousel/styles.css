@@ -1,7 +1,7 @@
 @import url("https://fonts.cdnfonts.com/css/ica-rubrik-black");
 
 body {
-  background: linear-gradient(30deg, #ff0, #25283b);
+  background: linear-gradient(30deg, #d2d2d2, #25283b);
   animation: gradientBG 15s ease infinite;
   background-size: 400% 400%;
 }
